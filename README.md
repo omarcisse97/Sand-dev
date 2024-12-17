@@ -70,3 +70,168 @@
   "password": "password123"
 }
 
+```
+
+**Response:**
+
+```json
+{
+  "token": "jwt-token",
+  "user": {
+    "id": "user-id",
+    "name": "John Doe"
+  }
+}
+```
+### Load Funds
+
+- **Endpoint:** `/api/wallet/load`
+- **Method:** POST
+
+**Payload:**
+
+```json
+{
+  "amount": 10000,
+  "provider": "orange-money",
+  "phone": "+223123456789"
+}
+
+
+```
+
+**Response:**
+
+```json
+{
+  "status": "success",
+  "transactionId": "txn-id"
+}
+
+```
+### P2P Transfer
+
+- **Endpoint:** `/api/wallet/transfer`
+- **Method:** POST
+
+**Payload:**
+
+```json
+{
+  "receiver": "receiver-id",
+  "amount": 5000
+}
+
+```
+
+**Response:**
+
+```json
+{
+  "status": "success",
+  "transactionId": "txn-id"
+}
+
+```
+### Card Issuance
+
+- **Endpoint:** `/api/cards/issue`
+- **Method:** POST
+
+**Payload:**
+
+```json
+{
+  "type": "virtual",
+  "currency": "XOF"
+}
+
+
+```
+
+**Response:**
+
+```json
+{
+  "status": "success",
+  "card": {
+    "id": "card-id",
+    "last4": "1234"
+  }
+}
+
+
+```
+
+## 3. Deployment Plan
+
+### Step 1: Setup Development Environment
+
+- Install Node.js and PostgreSQL.
+- Clone the GitHub repository.
+- Configure `.env` file with API keys for Stripe, Orange Money, and database credentials.
+- Run `npm install` and `npm run dev`.
+
+### Step 2: Deploy to Cloud
+
+- Provision AWS EC2 instances.
+- Setup PostgreSQL via AWS RDS.
+- Deploy the Next.js app using Docker or PM2.
+- Configure a load balancer for scalability.
+
+### Step 3: Monitoring and Maintenance
+
+- Use AWS CloudWatch for logs and alerts.
+- Set up automated backups for the database.
+- Regularly update dependencies and APIs.
+
+---
+
+## 4. Cost Estimation
+
+### Development Costs:
+
+- **Internal Development:** Free (self-developed).
+- **Additional Freelancers (if needed):** $5,000 - $10,000.
+
+### Monthly Infrastructure Costs:
+
+- **AWS:**
+  - EC2 (App Servers): ~$100.
+  - RDS (PostgreSQL): ~$50-$100.
+  - S3 (Storage): ~$20.
+
+- **Stripe Fees:**
+  - $0.10 per card issued.
+  - 2.9% + $0.30 per transaction.
+
+- **Orange Money API:**
+  - Partner-specific fees (~1-3% per transaction).
+
+**Total:** ~$300-$500 (depending on usage).
+
+### Marketing Budget:
+
+- ~$1,000/month for social media ads and agent recruitment.
+
+---
+
+## 5. Scalability Plan
+
+### Short-Term:
+
+- Focus on MVP launch in Mali.
+- Handle up to 10,000 users with a single database instance.
+
+### Medium-Term:
+
+- Expand to Senegal and Ivory Coast.
+- Introduce read replicas for the database.
+
+### Long-Term:
+
+- Scale to 100,000+ users with sharded databases and microservices.
+- Build regional data centers to improve latency.
+
+
+
